@@ -1,0 +1,170 @@
+<div class="container">
+    <div class="form">
+      <div class="login-html">
+          <div *ngIf="loginFailed" class="loginFailed">
+              <strong style="color: red">INVALID ACCOUNT</strong>
+          </div>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <div class="login-form">
+  
+          <!-- SignIn Form -->
+          <form [formGroup]="formIn" (ngSubmit)="signIn()" class="login">
+              <div class="sign-in-htm">
+                  <div class="group">
+                    <label for="user" class="label">Username</label>
+                    <input id="user" type="text" class="input" formControlName="username" placeholder="username">
+                    <div *ngIf="(formIn.get('username').touched 
+                        || formIn.get('username').dirty) && formIn.get('username').errors" class="warning">
+                        <span *ngIf="formIn.get('username').errors.minlength || formIn.get('username').errors.required">
+                          Username cannot be empty string!
+                        </span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <label for="pass" class="label">Password</label>
+                    <input id="pass" type="password" class="input" data-type="password" formControlName="password" placeholder="password">
+                    <div *ngIf="(formIn.get('password').touched 
+                    || formIn.get('password').dirty) && formIn.get('password').errors" class="warning" >
+                      <span *ngIf="formIn.get('password').errors.minlength || formIn.get('password').errors.required" >
+                          Password cannot be empty string!
+                      </span>
+                    </div>   
+                  </div>
+                  <div class="group">
+                    <input id="check" type="checkbox" class="check" formControlName="checked" checked>
+                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                  </div>
+                  <div class="group">
+                    <input type="submit" class="button"  [disabled]="formIn.invalid" value="Sign In">
+                  </div>
+                  <div class="hr"></div>
+                </div>
+          </form>
+          
+          <!-- SignUp Form -->
+          <form [formGroup]="formUp" (ngSubmit)="signUp()" class="register">
+            <div class="sign-up-htm">
+              <div class="group">
+                <!-- Username -->
+                <label for="user" class="label">Username</label>
+                <input id="user" type="text" class="input" formControlName="username">
+                <div *ngIf="(formUp.get('username').touched 
+                || formUp.get('username').dirty) && formUp.get('username').errors"
+                class="warning">
+                <span *ngIf="formUp.get('username').errors.minlength">
+                    Username must be least 3 symbols long!
+                </span>
+                <span *ngIf="formUp.get('username').errors.required">
+                    Username is required!
+                </span>
+                <span *ngIf="formUp.get('username').errors.pattern">
+                    Username contains only letters and digit!
+                </span>
+              </div>
+              </div>
+              <!-- Password -->
+              <div class="group">
+                <label for="pass" class="label">Password</label>
+                <input id="pass" type="password" class="input" data-type="password" formControlName="password">
+                <div *ngIf="(formUp.get('password').touched 
+                || formUp.get('password').dirty) && formUp.get('password').errors" class="warning">
+                  <span *ngIf="formUp.get('password').errors.minlength || formUp.get('password').errors.maxlength">
+                      Password must be least 6-16 symbols long!
+                  </span>
+                  <span *ngIf="formUp.get('password').errors.required">
+                      Password is required!
+                  </span>
+                  <span *ngIf="formUp.get('password').errors.pattern">
+                      Password contains only letters and digit!
+                  </span>
+                </div>   
+              </div>
+              <!-- FirsName -->
+              <div class="group">
+                <label for="firstName" class="label">First Name</label>
+                <input id="firstName" type="text" class="input" data-type="password" formControlName="firstName">
+                <div *ngIf="(formUp.get('firstName').touched 
+                  || formUp.get('firstName').dirty) && formUp.get('firstName').errors" class="warning">
+                  <span *ngIf="formUp.get('firstName').errors.pattern">
+                    First name must be start with a capital letter and contains only letters!
+                  </span>
+                  <span *ngIf="formUp.get('firstName').errors.required">
+                    First name is required!
+                  </span>
+                </div>
+              </div>
+              <!-- LastName -->
+              <div class="group">
+                <label for="lastName" class="label">Last Name</label>
+                <input id="lastName" type="text" class="input" data-type="password" formControlName="lastName">
+                <div  *ngIf="(formUp.get('lastName').touched 
+                  || formUp.get('lastName').dirty) && formUp.get('lastName').errors" class="warning">
+                  <span *ngIf="formUp.get('lastName').errors.pattern">
+                      Last name must be start with a capital letter and contains only letters!
+                  </span>
+                  <span *ngIf="formUp.get('lastName').errors.required">
+                      Last name is required!
+                  </span>
+              </div>
+              </div>
+              <!-- Email -->
+              <div class="group">
+                <label for="email" class="label">Email Address</label>
+                <input id="email" type="text" class="input" formControlName="email">
+                <div *ngIf="(formUp.get('email').touched 
+                  || formUp.get('email').dirty) && formUp.get('email').errors" class="warning">
+                  <span *ngIf="formUp.get('email').errors.pattern">
+                      Invalid email!
+                  </span>
+                </div>
+              </div>
+              <!-- Age -->
+              <div class="group">
+                <label for="age" class="label" style="color: whitesmoke">Age</label>
+                <input id="age" type="text" class="input" formControlName="age">
+                <div *ngIf="(formUp.get('age').touched 
+                || formUp.get('age').dirty) && formUp.get('age').errors" class="warning">
+                  <span *ngIf="formUp.get('age').errors.min || formUp.get('age').errors.max">
+                      Age must be least 18 to 70!
+                  </span>
+                  <span *ngIf="formUp.get('age').errors.required">
+                      Age is required!
+                  </span>
+                </div>
+              </div>
+              <!-- Gender -->
+              <div class="group">
+                  <div class ="row">
+                          <div class="col-xs-4 ">
+                            <label class="label">Gender: </label>
+                          </div>
+                          <div class="col-xs-4 male">	 
+                            <label class="label">Male</label>
+                            <br/>
+                            <input type="radio" name="gender" formControlName="gender"  id="gender" value="man">
+                          </div>
+                          <div class="col-xs-4 female">
+                            <label class="label">Female</label>
+                            <br/>
+                          <input type="radio"  name="gender" formControlName="gender" id="gender" value="woman" >
+                      </div>            
+                  </div>
+              </div>	 
+              <div class="group">
+                <input type="submit" class="button" [disabled]="formUp.invalid" value="Sign Up" >
+              </div>
+              <div class="hr"></div>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  
+
+

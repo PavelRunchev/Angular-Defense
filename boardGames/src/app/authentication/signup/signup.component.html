@@ -1,0 +1,93 @@
+<div class="register">
+  <div class="container">
+    <h1>Sign Up Form</h1>
+    <div *ngIf="loginFailed" class="loginFailed">
+      <strong style="color: red">{{errorMessage}}</strong>
+    </div>
+    <form #signupForm="ngForm" (ngSubmit)="signUp()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username"
+        required
+        name="username"
+        pattern="^[A-Za-z\d]+$"
+        [(ngModel)]="model.username"
+        #username="ngModel">
+        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+          Username must be contains only letters and digits!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password"
+        required
+        name="password"
+        pattern="^[A-Za-z\d]{6,16}$"
+        [(ngModel)]="model.password"
+        #password="ngModel">
+        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+          Password must contains only letters and digits and must be between 6 and 16 symbols.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+        required
+        name="confirmPassword"
+        [(ngModel)]="model.confirmPassword"
+        #confirmPassword="ngModel">
+        <div [hidden]="confirmPassword.value === password.value || confirmPassword.pristine" class="alert alert-danger">
+          Both passwords must match!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" placeholder="First Name"
+        required
+        name="firstName"
+        pattern="^[A-Z][A-Za-z]+$"
+        [(ngModel)]="model.firstName"
+        #firstName="ngModel">
+        <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+          First name must contain only letters and start with a capital letter.
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+        required
+        name="lastName"
+        pattern="^[A-Z][A-Za-z]+$"
+        [(ngModel)]="model.lastName"
+        #lastName="ngModel">
+        <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+          Last name must contain only letters and start with a capital letter.
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="text" class="form-control" id="email" placeholder="Email"
+        required
+        name="email"
+        email
+        [(ngModel)]="model.email"
+        #email="ngModel">
+        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+          Invalid email!
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" placeholder="Age"
+        name="age"
+        [(ngModel)]="model.age"
+        #age="ngModel">
+      </div>
+
+      <button type="submit" class="btn btn-info" [disabled]="signupForm.form.invalid">Sign Up</button>
+    </form>
+  </div>
+</div>

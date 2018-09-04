@@ -1,0 +1,28 @@
+										Board Games Breif Document
+
+
+		1. My simple application is a free web site for board games, I've used Angular 6.1.0 as a development environment, 
+	and I've used Kinvey for back-end.
+	Web design I made with bootstrap and CSS for greater page flexibility and easier sizing.
+		2. External libraries I have used are "angular2-uuid" - a 36-character random string, "ng2-validation" - 
+	additional the fields validation in all forms, "ngx-pagination" - numbering all the products on the page, 
+	"Ngx-toastr" - additional display library in the top right corner user information!
+		3. Not registered users can only see the home page and the sign in / sign up page. 
+	Due to copyright, we can not provide more information about the products themselves unless you sign up with us.
+	Anyone who registers must indicate their gender so that the site can authenticate the site and write down their 
+	name and whether they are male or female. 
+	Only logged-in users will be able to see on the "home" page which game has the highest rating!
+		4.All logged users have the right to view the list of games will have their own section "My Games", 
+	when we like some of our products it automatically goes to the section of the user there can view it as well as the trailer is saved. 
+	The user, if he wants to download the game, must follow the following rules. 
+	First you have to posted the game with a rank zero by default. 
+	All other players must give their rank and when they reach 20 or more in their section will appear a "free download" button 
+	that will send you to a free download site. 
+	You also have a "key" button that you can take CD-Key for to install the game!
+		5. Administrators have any rights that they can add and edit and delete games at their discretion. 
+	They can also delete posted games or just clear the rank if there are any violations!
+		6. As a bonus, I've used a "simple unit test" and animation in the "Special Thanks" page to thank for the trainers 
+	with whom I helped with this level of training.
+	
+	
+	Angular Module - 26 August Project Defenses.

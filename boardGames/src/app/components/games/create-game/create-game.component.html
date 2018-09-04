@@ -1,0 +1,161 @@
+
+<div class="container">
+    
+
+  <div class="row space-top">
+      <div class="col-md-12">
+          <h1>Create New Game</h1>
+          <p>Please fill all fields.</p>
+      </div>
+  </div>
+  <div *ngIf="createFailed" class="alert alert-danger">
+    <strong style="color: red">{{errorMessage}}</strong>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="createGame()">
+    <div class="form">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="label" for="new-title" style="color: rgb(1, 214, 65)">Title</label>
+                <input class="form-control" id="new-title" type="text" placeholder="Title" formControlName="title">
+                <div *ngIf="(form.get('title').touched 
+                || form.get('title').dirty) && form.get('title').errors" class="alert alert-danger">
+                    <span *ngIf="form.get('title').errors.minlength" style="color: red">
+                        Title must be least 3 symbols long!
+                    </span>
+                    <span *ngIf="form.get('title').errors.required" style="color: red">
+                        Title is required!
+                    </span>
+                    <span *ngIf="form.get('title').errors.pattern" style="color: red">
+                        Title must be contains only letters and digit!
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="label" for="new-publisher" style="color: rgb(1, 214, 65)">Publisher</label>
+                <input class="form-control is-valid" id="new-publisher" type="text" placeholder="Publisher" formControlName="publisher">
+                <div *ngIf="(form.get('publisher').touched 
+                || form.get('publisher').dirty) && form.get('publisher').errors" class="alert alert-danger">
+                    <span *ngIf="form.get('publisher').errors.minlength" style="color: red">
+                        Publisher must be least 2 symbols long!
+                    </span>
+                    <span *ngIf="form.get('publisher').errors.required" style="color: red">
+                        Publisher is required!
+                    </span>
+                    <span *ngIf="form.get('publisher').errors.pattern" style="color: red">
+                        Publisher must be contains only letters and digit!
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="font-weight-bold" for="new-date" style="color: rgb(1, 214, 65)">Release Date</label>
+                <input class="form-control is-invalid" id="new-date" type="number" formControlName="date">
+                <div *ngIf="(form.get('date').touched 
+                || form.get('date').dirty) && form.get('date').errors" class="alert alert-danger">
+                    <span *ngIf="form.get('date').errors.min || form.get('date').errors.max" style="color: red">
+                        Release Date must be least 1996 to 2020 year!
+                    </span>
+                    <span *ngIf="form.get('date').errors.required" style="color: red">
+                        Release Date is required!
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="font-weight-bold" for="new-description" style="color: rgb(1, 214, 65)">Description</label>
+                <input class="form-control" id="new-description" type="text" placeholder="Description" formControlName="description">
+                <div *ngIf="(form.get('description').touched 
+                || form.get('description').dirty) && form.get('description').errors" class="alert alert-danger">
+                    <span *ngIf="form.get('description').errors.minlength || form.get('description').errors.maxlength" style="color: red">
+                        Description must be least 10 to 255 symbols!
+                    </span>
+                    <span *ngIf="form.get('description').errors.required" style="color: red">
+                        Description is required!
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="font-weight-bold" for="new-imageUrl" style="color: rgb(1, 214, 65)">Image Url</label>
+                <input class="form-control" id="new-imageUrl" type="text" placeholder="Image Url" formControlName="imageUrl">
+                <div *ngIf="(form.get('imageUrl').touched 
+                || form.get('imageUrl').dirty) && form.get('imageUrl').errors" class="alert alert-danger">
+                    <span *ngIf="form.get('imageUrl').errors.pattern" style="color: red">
+                        ImageUrl must be end with jpg, jpeg, gif, JPG, png, PNG format!
+                    </span>
+                    <span *ngIf="form.get('imageUrl').errors.required" style="color: red">
+                        ImageUrl is required!
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label class="font-weight-bold" for="new-genre" style="color: rgb(1, 214, 65)">Genre</label>
+              <input class="form-control" id="new-genre" type="text" placeholder="Genre" formControlName="genre">
+              <div *ngIf="(form.get('genre').touched 
+              || form.get('genre').dirty) && form.get('genre').errors" class="alert alert-danger">
+                  <span *ngIf="form.get('genre').errors.pattern" style="color: red">
+                      Genre must be started with capital letter and to contains only letters and dashes!
+                  </span>
+                  <span *ngIf="form.get('genre').errors.required" style="color: red">
+                      Genre is required!
+                  </span>
+                  <span *ngIf="form.get('genre').errors.minlength" style="color: red">
+                      Genre must be least 3 symbols long!
+                  </span>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="font-weight-bold" for="new-platform" style="color: rgb(1, 214, 65)">Platform</label>
+              <input class="form-control" id="new-platform" type="text" placeholder="Platform" formControlName="platform">
+              <div *ngIf="(form.get('platform').touched 
+              || form.get('platform').dirty) && form.get('platform').errors" class="alert alert-danger">
+                  <span *ngIf="form.get('platform').errors.pattern" style="color: red">
+                      PLatform must be started with capital letter and to contains only letters and dashes!
+                  </span>
+                  <span *ngIf="form.get('platform').errors.required" style="color: red">
+                      PLatform is required!
+                  </span>
+                  <span *ngIf="form.get('platform').errors.minlength" style="color: red">
+                      PLatform must be least 2 symbols long!
+                  </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="font-weight-bold" for="new-trailerUrl" style="color: rgb(1, 214, 65)">Trailer Url</label>
+              <input class="form-control" id="new-trailerUrl" type="text" placeholder="TrailerUrl" formControlName="trailerUrl">
+              <div *ngIf="(form.get('trailerUrl').touched 
+              || form.get('trailerUrl').dirty) && form.get('trailerUrl').errors" class="alert alert-danger">
+                  <span *ngIf="form.get('trailerUrl').errors.pattern" style="color: red">
+                      TrailerUrl must be started with 'http'!
+                  </span>
+                  <span *ngIf="form.get('trailerUrl').errors.required" style="color: red">
+                      trailerUrl is required!
+                  </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="font-weight-bold" for="new-downloadUrl" style="color: rgb(1, 214, 65)">Download Url</label>
+              <input class="form-control" id="new-downloadUrl" type="text" placeholder="DownloadUrl" formControlName="downloadUrl">
+              <div *ngIf="(form.get('downloadUrl').touched 
+              || form.get('downloadUrl').dirty) && form.get('downloadUrl').errors" class="alert alert-danger">
+                  <span *ngIf="form.get('downloadUrl').errors.pattern" style="color: red">
+                      DownloadUrl must be started with 'http'!
+                  </span>
+                  <span *ngIf="form.get('downloadUrl').errors.required" style="color: red">
+                      DownloadUrl is required!
+                  </span>
+              </div>
+            </div>
+
+              <input type="submit" [disabled]="form.invalid" class="btn btn-info" value="Create Game" />
+        </div>
+    </div>
+</form>
+
+</div>

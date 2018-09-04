@@ -1,0 +1,61 @@
+
+<div *ngIf="postGame" class="container">
+    <div class="row align-items-center justify-content-center">
+        <h1 class="font-weight-bold" style="color: whitesmoke">Posted Game Details</h1>       
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="rank" style="color: whitesmoke">Rank: {{postGame.rank}}</h4> 
+            <img class="img-thumbnail" src="{{postGame.imageUrl}}" height="500px" width="400px"/>
+            <h3 class="poster">Poster: {{postGame.taker}}</h3> 
+        </div>  
+        <div class="col-md-6">
+            <p class="font-weight-bold">Title: {{postGame.title}}</p>   
+            <p class="font-weight-bold">Publisher: {{postGame.publisher}}</p>   
+            <p class="font-weight-bold">Release Date: {{postGame.date}}</p>    
+            <p class="font-weight-bold">Genre: {{postGame.genre}}</p>
+            <p class="font-weight-bold">Platform: {{postGame.platform}}</p>
+            <p class="font-weight-bold">Trailer game: </p>
+            <a *ngIf="postGame.trailerUrl" target="_blank" href="{{postGame.trailerUrl}}" class="btn btn-info">View Trailer</a>
+            <br/> 
+        </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+            <div class="col-md-3">
+                <div class=input-group>
+                        <p class="alert alert-warning" style="color: black">Give you choice to this game!</p>     
+                        <select [(ngModel)]="myChoice" class="form-control" id="exampleFormControlSelect1">     
+                        <option selected [ngValue]="1">1</option>
+                        <option [ngValue]="2">2</option>
+                        <option [ngValue]="3">3</option>
+                        <option [ngValue]="4">4</option>
+                        <option [ngValue]="5">5</option>
+                        <option [ngValue]="6">6</option>
+                        </select>
+                    <span class="input-group-btn">
+                        <button (click)="giveRank(myChoice)" type="submit" class="btn btn-warning">Give your rank</button>
+                    </span>
+                </div>
+            </div>
+            
+    </div>
+</div>
+
+<div *ngIf="postGame && authService.checkForAdmin()" class="row align-items-center justify-content-center">
+    <div class="jumbotron"> 
+        <div class="delete">
+            <h5 class="row align-items-center justify-content-center" style="color: red">Only for Admin is allowed!</h5>
+            <p class="font-weight-bold" style="color: red">Delete Posted Game from Base!</p> 
+            <a (click)="deleteGame(postGame._id)" class="btn btn-danger btn-lg">Delete Game</a>
+        </div>
+    </div>
+     <div class="jumbotron">
+        <div class="post">
+            <h5 class="row align-items-center justify-content-center" style="color: yellow">Only for Admin is allowed!</h5>
+             <p class="font-weight-bold" style="color: yellow">Remove current Game from Public Posted Game List!</p>             
+            <a (click)="removePost(postGame._id)" class="btn btn-warning btn-lg">Remove Post</a>
+        </div>
+    </div>
+</div>
+
+

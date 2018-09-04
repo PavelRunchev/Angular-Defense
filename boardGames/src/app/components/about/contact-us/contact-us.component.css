@@ -1,0 +1,24 @@
+
+.jumbotron {
+    background-image: url('../../../../assets/Airplane_Aircraft_carrier_Battlefield_3_Attack_523179_3840x2160.jpg');
+    border: 4px solid grey;
+}
+
+.container {
+    color: whitesmoke;
+    text-align: center;
+    border: 4px solid rgb(49, 49, 49);
+    background-image: url('../../../../assets/black-dragon-wallpaper.jpg');
+}
+
+.col-md-4 {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.photo {
+    border: 4px solid grey;
+    position: absolute;
+    top: 170px;
+    right: 30px;
+}

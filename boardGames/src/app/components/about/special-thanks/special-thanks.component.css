@@ -1,0 +1,20 @@
+
+
+.jumbotron {
+    background-image: url('../../../../assets/Airplane_Aircraft_carrier_Battlefield_3_Attack_523179_3840x2160.jpg');
+    border: 4px solid grey;
+}
+
+.container {
+    color: whitesmoke;
+    text-align: center;
+    border: 4px solid grey;
+    background-image: url('../../../../assets/game-of-thrones-house-greyjoy-melaamory-1920x1080-wallpaper.jpg');
+}
+
+.col-md-4 {
+    padding-bottom: 30px;
+    text-align: center;
+    padding-top: 30px;
+}
+

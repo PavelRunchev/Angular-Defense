@@ -1,0 +1,37 @@
+
+<div *ngIf="game" class="container">
+    <div class="row align-items-center justify-content-center">
+        <h1 class="font-weight-bold" style="color: whitesmoke">Details Game</h1>       
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-thumbnail" src="{{game.imageUrl}}"/>
+        </div>
+        <div class="col-md-6">
+            <p class="font-weight-bold">Title: {{game.title}}</p>   
+            <p class="font-weight-bold">Publisher: {{game.publisher}}</p>   
+            <p class="font-weight-bold">Release Date: {{game.date}}</p>
+            <p class="font-weight-bold">Genre: {{game.genre}}</p>
+            <p class="font-weight-bold">Platform: {{game.platform}}</p>
+            <p *ngIf="game.trailerUrl" class="font-weight-bold">Trailer game: </p>
+            <a *ngIf="game.trailerUrl" target="_blank" href="{{game.trailerUrl}}" class="btn btn-info">View Trailer</a>
+            <br/>
+            <div>
+                <p class="font-weight-bold">Take game in your room!</p>   
+                <a (click)="takeGame()" class="btn btn-warning">Take game</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="game" class="form-group">
+            <label for="comment" style="color: whitesmoke"><strong>Description:</strong></label>
+            <textarea class="form-control" rows="5" cols="5" id="comment" placeholder="{{game.description}}"></textarea>
+    </div>
+  
+</div>
+<div *ngIf="game" class="row align-items-center justify-content-center">
+        <div *ngIf="authService.checkForAdmin()" class="col-md-2">
+            <p class="alert alert-warning">Options only for admin!</p> 
+            <a routerLink="/games/editGame/{{game._id}}" class="btn btn-warning">Edit Game</a>
+            <a (click)="deleteGame(game._id)" class="btn btn-danger"> Delete Game</a>
+        </div>
+</div>

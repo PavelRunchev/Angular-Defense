@@ -1,0 +1,30 @@
+
+
+
+<div  class="container">
+        <div class="row space-top">
+            <div class="col-md-12">
+                <h1 style="color: whitesmoke">Welcome in Free Board Games Catalog</h1>    
+                <h4 style="color: whitesmoke">If you want to see all games you have to sign in!</h4> 
+            </div>
+            <div *ngIf="noRaiting" class="position">
+                <h3 style="color: whitesmoke" class="text-center">No given raiting for the games!</h3>        
+            </div>
+        </div>
+        <div *ngIf="highestGame" class="row align-items-center justify-content-center">
+            <div class="col-md-4" *ngIf="!noRaiting">
+                <h3 class="text-center" style="color: lightblue">This is the game with the highest rating to us!</h3>
+                
+                <div class="jumbotron" >
+                    <h4>{{highestGame.title}}</h4>
+                    <img src="{{highestGame.imageUrl}}" width="400px" height="auto" class="img-thumbnail">
+                    <h4 >Rank: {{highestGame.rank}}</h4>
+                    <div *ngIf="authService.checkIfLogged()">
+                        <a routerLink="../postedGameDetails/{{highestGame._id}}" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>    
+  </div>
+
+  

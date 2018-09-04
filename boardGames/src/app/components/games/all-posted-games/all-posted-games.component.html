@@ -1,0 +1,42 @@
+
+<div  class="container">   
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-12">
+            <h1>All Posted Games</h1>
+            <p>Selected view details and post your rank of the game!</p>
+        </div>
+    </div>
+    <div class="row" >
+        <div *ngFor="let game of postedGames | paginate : {
+                id: 'postedGames',
+                itemsPerPage: pageSize,
+                currentPage: currentPage}"
+                class="col-md-4">
+                <div class="jumbotron" > 
+                    <p>{{game.title}}</p>
+                    <img src="{{game.imageUrl}}" class="img-thumbnail"/>
+                    <p>Rank: {{game.rank}}</p>
+                    <div>
+                        <a routerLink="../postedGameDetails/{{game._id}}" class="btn btn-outline-primary">View Details</a>
+                    </div>                                                         
+                </div>
+        </div>
+
+       
+    </div>
+
+    <div *ngIf="postedGames" class="row align-items-center justify-content-center">
+        <pagination-controls
+                id="postedGames"
+                (pageChange)="changePage($event)"
+                maxSize="9"
+                directionLinks="true"
+                autoHide="true"
+                previousLabel="Previous"
+                nextLabel="Next"
+                screenReaderPaginationLabel="Pagination"
+                screenReaderPaginationLabel="page"
+                screenReaderPaginationLabel="You're on page">
+        </pagination-controls>
+    </div>
+</div>

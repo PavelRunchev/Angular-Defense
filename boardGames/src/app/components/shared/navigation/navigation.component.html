@@ -1,0 +1,57 @@
+<div class="header">
+
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="min-height: 20px;">
+        <img src="../../../../assets/logo2.jpg" height="50px" width="50px"/>
+        <a class="navbar-brand" href="#">BoardGames</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        
+            <div *ngIf="authService.checkIfLogged()" class="dropdown">
+                <button class="dropbtn" style="color: rgb(172, 63, 0)">Dropdown 
+                  <a class="fa fa-caret-down"></a>
+                </button>
+                <div  class="dropdown-content">
+                  <a *ngIf="authService.checkForAdmin()" routerLink="/createGame">Create Games</a>
+                  <a routerLink="/games/allGames">All Games</a>
+                  <a routerLink="/games/myGames">My Games</a>
+                  <a routerLink="/games/allPostedGames">All Posted Games</a>
+                </div>
+            </div> 
+          
+            <div class="collapse navbar-collapse" id="navbarColor01">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a  class="nav-link" routerLink="/home" style="color: rgb(172, 63, 0)">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li *ngIf="authService.checkIfLogged()" class="nav-item active">
+                  <a  class="nav-link" routerLink="/about/contactUs" style="color: rgb(172, 63, 0)">Contact Us <span class="sr-only">(current)</span></a>
+                </li>
+                <li *ngIf="authService.checkIfLogged()" class="nav-item active">
+                  <a  class="nav-link" routerLink="/about/specialThenks" style="color: rgb(172, 63, 0)">Special Thanks <span class="sr-only">(current)</span></a>
+                </li>
+                <li *ngIf="!authService.checkIfLogged()" class="nav-item">
+                  <a  class="nav-link" routerLink="/signin" style="color: rgb(172, 63, 0)">Sign In</a>
+                </li>
+              </ul>
+            </div>
+     
+        
+       
+        <div *ngIf="authService.checkForAdmin()" class="isAdmin" style="text-align: center;">
+          <h5 class="navbar-text text-center" >Welcome {{authService.getGender}} {{authService.getUserName}}, you are ADMIN!</h5>
+        </div>
+        <div *ngIf="authService.checkIfLogged() && !authService.checkForAdmin()" class="navbar-nav mr-auto" >
+                <h5 class="nav-link" style="color: whitesmoke">Welcome {{authService.getGender}} {{authService.getUserName}}!</h5>
+        </div>
+          
+        <div class="navbar-nav mr-auto" *ngIf="authService.checkIfLogged()">
+          <a  class="nav-link" (click)="logout()" style="color: rgb(172, 63, 0)">Logout</a>
+        </div>
+      </nav>
+</div>
+
+
+
+  
