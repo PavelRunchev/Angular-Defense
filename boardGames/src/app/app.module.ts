@@ -15,6 +15,9 @@ import { AppRoutingModule } from 'src/app/app.routing';
 import { GameModule } from './components/games/game.module';
 import { AboutModule } from './components/about/about.module';
 
+import { StoreModule } from '../../node_modules/@ngrx/store';
+import { appReducers } from './store/app.reducers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,8 @@ import { AboutModule } from './components/about/about.module';
     GameModule,
     CustomFormsModule,
     AboutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(appReducers)
   ],
   providers: [ AuthService ],
   bootstrap: [AppComponent]

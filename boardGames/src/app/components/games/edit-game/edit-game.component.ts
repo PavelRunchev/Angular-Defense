@@ -5,6 +5,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { Store, select } from '../../../../../node_modules/@ngrx/store';
+import { AppState } from '../../../store/app.state';
+
 @Component({
   selector: 'app-edit-game',
   templateUrl: './edit-game.component.html',
@@ -74,14 +77,22 @@ export class EditGameComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private route: ActivatedRoute,
+    private store: Store<AppState>
   ) {
-    this.id = this.route.snapshot.params['id'];
+    
   }
 
   ngOnInit() {
-    this.gameService.detailsGame(this.id).subscribe((data) => {
-      this.gameEdit = data;
+    this.id = this.route.snapshot.params['id'];
+    this.gameService
+      .getToEditById(this.id)
+      .subscribe(() => {
+        this.store
+          .pipe(select(state => state.games.toEdit))
+          .subscribe(gameToEdit => this.gameEdit = gameToEdit);
+        console.log(this.gameEdit);
     })
+    console.log(this.id);
   }
 
   editGame() {

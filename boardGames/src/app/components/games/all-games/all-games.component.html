@@ -12,13 +12,13 @@
                 <form #form="ngForm" (submit)="search(form.value.search)">
                     <input type="text" class="border border-secondary" name="search" ngModel>
                     <button type="sumbit" class="btn btn-warning">Search Game</button>
-                    <div *ngIf="noSearchedResult"><h1 style="color: whitesmoke">No Search Games!</h1></div> 
-                </form>  
+                    <div *ngIf="noSearchedResult"><h1 style="color: yellow">No Search Games!</h1></div> 
+                </form> 
         </div> 
     </div>           
      
-    <div class="row" >
-        <div *ngFor="let game of games | paginate : {
+    <div class="row" *ngIf="games$">
+        <div *ngFor="let game of games$ | async | paginate : {
             id: 'allGames',
             itemsPerPage: pageSize,
             currentPage: currentPage}"
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div *ngIf="games" class="row align-items-center justify-content-center">
+    <div *ngIf="games$" class="row align-items-center justify-content-center">
         <pagination-controls
             id="allGames"
             (pageChange)="changePage($event)"

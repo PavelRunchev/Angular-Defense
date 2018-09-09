@@ -10,7 +10,6 @@ import { MyGamesComponent } from './my-games/my-games.component';
 import { MyDetailsGameComponent } from './my-details-game/my-details-game.component';
 import { AllPostedGamesComponent } from './all-posted-games/all-posted-games.component';
 import { PostedDetailsGameComponent } from './posted-details-game/posted-details-game.component';
-import { AuthGuard } from '../../authentication/guards/auth.guard';
 
 const gameRoutes: Routes = [
     { path: 'allGames', component: AllGamesComponent },

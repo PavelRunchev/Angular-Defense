@@ -6,6 +6,13 @@ import { MyGameModel } from './models/my-game.model';
 import { CreateGameModel } from './models/create-game.model';
 import { CreateMyGameModel } from './models/create-my-game.model';
 
+import { Observable } from '../../../../node_modules/rxjs';
+import { AppState } from '../../store/app.state';
+import { Store } from '../../../../node_modules/@ngrx/store';
+import { map } from 'rxjs/operators';
+import { GetAllGames, GetAllSearchedGames } from './../../store/actions/games.actions';
+import { GetGameDetail, GetGameToEdit } from '../../store/actions/games.actions';
+
 const appKey = "kid_SJkb3YSIQ";
 
 const createGameUrl = `https://baas.kinvey.com/appdata/${appKey}/games`;
@@ -21,7 +28,10 @@ const postGameUrl = `https://baas.kinvey.com/appdata/${appKey}/myGamesStore/`;
 
 @Injectable()
 export class GameService {
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient, 
+        private store: Store<AppState>
+    ) { }
 
     createGame(body: CreateGameModel) {
         return this.http.post(createGameUrl, JSON.stringify(body),
@@ -36,7 +46,16 @@ export class GameService {
             {
                 headers: this.createAuthHeader()
             }
-        );
+        ).pipe(map((res: Response) => {
+            const items = Object.keys(res);
+            const games: GameModel[] = [];
+
+            for (let i of items) {
+                games.push(res[i]);
+            }
+
+            this.store.dispatch(new GetAllGames(games));
+        }));
     }
 
     searchGame(value: string) {
@@ -45,7 +64,16 @@ export class GameService {
             {
                 headers: this.createAuthHeader()
             }
-        );
+        ).pipe(map((res: Response) => {
+            const items = Object.keys(res);
+            const games: GameModel[] = [];
+
+            for (let i of items) {
+                games.push(res[i]);
+            }
+
+            this.store.dispatch(new GetAllSearchedGames(games));
+        }));
     }
 
     detailsGame(id: string) {
@@ -53,7 +81,19 @@ export class GameService {
             {
                 headers: this.createAuthHeader()
             }
-        );
+        ).pipe(map((game: GameModel) => {
+            this.store.dispatch(new GetGameDetail(game));
+        }));
+    }
+
+    getToEditById(id: string) {
+        return this.http.get<GameModel>(detailsGameUrl + id,
+            {
+                headers: this.createAuthHeader()
+            }
+        ).pipe(map((game: GameModel) => {
+            this.store.dispatch(new GetGameToEdit(game));
+        }));
     }
 
     removeGame(id: string) {

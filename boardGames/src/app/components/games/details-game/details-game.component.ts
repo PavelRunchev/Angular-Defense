@@ -10,6 +10,9 @@ import { GameModel } from './../models/game.model';
 import { GameService } from './../game.survice';
 import { CreateMyGameModel } from './../models/create-my-game.model';
 
+import { Store, select } from '../../../../../node_modules/@ngrx/store';
+import { AppState } from '../../../store/app.state';
+
 @Component({
   selector: 'app-details-game',
   templateUrl: './details-game.component.html',
@@ -25,15 +28,18 @@ export class DetailsGameComponent implements OnInit {
     private gameService: GameService,
     private toastr : ToastrService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<AppState>
   ) {
     this.id = this.route.snapshot.params['id'];
    }
 
   ngOnInit() {
-    this.gameService.detailsGame(this.id)
-      .subscribe((data) => {
-        this.game = data;
+    this.gameService
+      .detailsGame(this.id)
+      .subscribe(() => {
+        this.store.pipe(select(state => state.games.detail))
+        .subscribe(detail => this.game = detail);
     });
   }
 
