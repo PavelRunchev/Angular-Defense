@@ -7,6 +7,7 @@
 		2. External libraries I have used are "angular2-uuid" - a 36-character random string, "ng2-validation" - 
 	additional the fields validation in all forms, "ngx-pagination" - numbering all the products on the page, 
 	"Ngx-toastr" - additional display library in the top right corner user information!
+		
 		3. Not registered users can only see the home page and the sign in / sign up page. 
 	Due to copyright, we can not provide more information about the products themselves unless you sign up with us.
 	Anyone who registers must indicate their gender so that the site can authenticate the site and write down their 
@@ -21,7 +22,7 @@
 	You also have a "key" button that you can take CD-Key for to install the game!
 		5. Administrators have any rights that they can add and edit and delete games at their discretion. 
 	They can also delete posted games or just clear the rank if there are any violations!
-		6. As a bonus, I've used a "simple unit test" and animation in the "Special Thanks" page to thank for the trainers 
+		6. As a bonus, I've used a "@ngrx/store" (redux) library, simple unit test" and animation in the "Special Thanks" page to thank for the trainers 
 	with whom I helped with this level of training.
 	
 	Angular Module - 26 August Project Defenses.

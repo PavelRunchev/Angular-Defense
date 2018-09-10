@@ -1,6 +1,5 @@
 
 <div  class="container">
-      
     <div class="row align-items-center justify-content-center">
         <div class="col-md-12">
             <h1 class="font-weight-bold" style="color: whitesmoke">Your Games Room</h1>
@@ -13,8 +12,8 @@
             <br/>
             <h1 style="color: yellow"><strong>You have no games added to your section!</strong></h1>
     </div>
-    <div class="row"  *ngIf="mygames">
-        <div *ngFor="let game of mygames | paginate : {
+    <div class="row"  *ngIf="myGames">
+        <div *ngFor="let game of myGames | paginate : {
                 id: 'allGames',
                 itemsPerPage: pageSize,
                 currentPage: currentPage}" class="col-md-4">
@@ -29,7 +28,7 @@
         </div>
     </div>
          
-    <div *ngIf="mygames" class="row align-items-center justify-content-center">
+    <div *ngIf="myGames" class="row align-items-center justify-content-center">
         <pagination-controls
             id="allGames"
             (pageChange)="changePage($event)"

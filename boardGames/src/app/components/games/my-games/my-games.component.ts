@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AuthService } from '../../../authentication/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { MyGameModel } from './../models/my-game.model';
 import { GameService } from './../game.survice';
+
+import { Observable } from 'rxjs';
+import { Store, select } from '../../../../../node_modules/@ngrx/store';
+import { AppState } from '../../../store/app.state';
 
 @Component({
   selector: 'app-my-games',
@@ -11,7 +14,8 @@ import { GameService } from './../game.survice';
   styleUrls: ['./my-games.component.css']
 })
 export class MyGamesComponent implements OnInit {
-  mygames;
+  myGames: MyGameModel[];
+  observableMyGames$: Observable<MyGameModel[]>;
   pageSize: number = 3;
   currentPage: number = 1;
   noAddMyGames: boolean = false;
@@ -19,19 +23,22 @@ export class MyGamesComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private authService: AuthService,
-    private gameService: GameService
+    private gameService: GameService,
+    private store: Store<AppState>
   ) {
     
    }
 
   ngOnInit() {
     this.gameService.getMyGames()
-      .subscribe((data) => { 
-        if(data.length === 0) {
+      .subscribe(() => { 
+        this.observableMyGames$ = this.store.pipe(select(state => state.myGames.allMyGames));
+        this.myGames = this.observableMyGames$['actionsObserver']['_value']['payload'];
+
+        if(this.myGames.length === 0) {
           this.noAddMyGames = true;
         } else {
           this.noAddMyGames = false;
-          this.mygames = data;
         }
       });
   }

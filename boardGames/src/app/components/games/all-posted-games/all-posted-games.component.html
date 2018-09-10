@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row" >
-        <div *ngFor="let game of postedGames | paginate : {
+        <div *ngFor="let game of postedGames$ | async | paginate : {
                 id: 'postedGames',
                 itemsPerPage: pageSize,
                 currentPage: currentPage}"
@@ -25,7 +25,7 @@
        
     </div>
 
-    <div *ngIf="postedGames" class="row align-items-center justify-content-center">
+    <div *ngIf="postedGames$" class="row align-items-center justify-content-center">
         <pagination-controls
                 id="postedGames"
                 (pageChange)="changePage($event)"

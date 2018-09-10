@@ -6,12 +6,12 @@ import { MyGameModel } from './models/my-game.model';
 import { CreateGameModel } from './models/create-game.model';
 import { CreateMyGameModel } from './models/create-my-game.model';
 
-import { Observable } from '../../../../node_modules/rxjs';
 import { AppState } from '../../store/app.state';
 import { Store } from '../../../../node_modules/@ngrx/store';
 import { map } from 'rxjs/operators';
-import { GetAllGames, GetAllSearchedGames } from './../../store/actions/games.actions';
-import { GetGameDetail, GetGameToEdit } from '../../store/actions/games.actions';
+import { GetAllGames, GetAllSearchedGames, GetGameDetail, GetGameToEdit } from './../../store/actions/games.actions';
+import { GetAllPostedGames, GetPostedeDetail } from './../../store/actions/postGames.actions';
+import { GetAllMyGames, GetMyGameDetail } from './../../store/actions/myGames.actions';
 
 const appKey = "kid_SJkb3YSIQ";
 
@@ -127,7 +127,16 @@ export class GameService {
             {
                 headers: this.createAuthHeader()
             }
-        );
+        ).pipe(map((res: Response) => {
+            const items = Object.keys(res);
+            const myGames: MyGameModel[] = [];
+
+            for (let i of items) {
+                myGames.push(res[i]);
+            }
+
+            this.store.dispatch(new GetAllMyGames(myGames));
+        }));;
     }
 
     myDetailsGame(id: string) {
@@ -135,7 +144,19 @@ export class GameService {
             {
                 headers: this.createAuthHeader()
             }
-        );
+        ).pipe(map((myGame: MyGameModel) => {
+            this.store.dispatch(new GetMyGameDetail(myGame));
+        }));;
+    }
+
+    postedGameDetal(id: string) {
+        return this.http.get<MyGameModel>(myDetailsGameUrl + id, 
+            {
+                headers: this.createAuthHeader()
+            }
+        ).pipe(map((myGame: MyGameModel) => {
+            this.store.dispatch(new GetPostedeDetail(myGame));
+        }));;
     }
 
     postedAllGames() {
@@ -143,7 +164,16 @@ export class GameService {
             {
                 headers: this.createAuthHeader()
             }
-        );
+        ).pipe(map((res: Response) => {
+            const items = Object.keys(res);
+            const myGames: MyGameModel[] = [];
+
+            for (let i of items) {
+                myGames.push(res[i]);
+            }
+
+            this.store.dispatch(new GetAllPostedGames(myGames));
+        }));
     }
 
     removeMyGame(id: string) {

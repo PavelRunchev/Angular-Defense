@@ -6,6 +6,9 @@ import { AuthService } from '../../../authentication/auth.service';
 import { MyGameModel } from './../models/my-game.model';
 import { GameService } from './../game.survice';
 
+import { Store, select } from '../../../../../node_modules/@ngrx/store';
+import { AppState } from '../../../store/app.state';
+
 @Component({
   selector: 'app-posted-details-game',
   templateUrl: './posted-details-game.component.html',
@@ -20,17 +23,21 @@ export class PostedDetailsGameComponent implements OnInit {
     private gameService: GameService,
     private toastr : ToastrService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<AppState>
   ) {
     this.id = this.route.snapshot.params['id'];
    }
 
   ngOnInit() {
-    this.gameService.myDetailsGame(this.id)
-      .subscribe((data) => {
-        this.postGame = data;
+    this.gameService.postedGameDetal(this.id)
+      .subscribe(() => {
+        this.store.pipe(select(state => state.postedGames.postedDetail))
+        .subscribe(postDetail => this.postGame = postDetail);
     });
   }
+
+  
 
   giveRank(choice) {
     if(choice === undefined) {

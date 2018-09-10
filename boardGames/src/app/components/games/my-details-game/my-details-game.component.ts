@@ -6,6 +6,9 @@ import { AuthService } from '../../../authentication/auth.service';
 import { MyGameModel } from './../models/my-game.model';
 import { GameService } from './../game.survice';
 
+import { Store, select } from '../../../../../node_modules/@ngrx/store';
+import { AppState } from '../../../store/app.state';
+
 @Component({
   selector: 'app-my-details-game',
   templateUrl: './my-details-game.component.html',
@@ -22,18 +25,21 @@ export class MyDetailsGameComponent implements OnInit {
     private gameService: GameService,
     private toastr : ToastrService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<AppState>
   ) {
     this.id = this.route.snapshot.params['id'];
    }
 
   ngOnInit() {
     this.gameService.myDetailsGame(this.id)
-      .subscribe((data) => {
-        if(Number(data['rank']) >= 20) {
+      .subscribe(() => {
+        this.store.pipe(select(state => state.myGames.myGameDetail))
+        .subscribe(myDetail => this.myGame = myDetail);
+
+        if(Number(this.myGame['rank']) >= 20) {
           this.freeDownload = true;
         }
-        this.myGame = data;
     });
   }
 
