@@ -21,7 +21,7 @@
 	You also have a "key" button that you can take CD-Key for to install the game!
 		5. Administrators have any rights that they can add and edit and delete games at their discretion. 
 	They can also delete posted games or just clear the rank if there are any violations!
-		6. As a bonus, I've used a "simple unit test" and animation in the "Special Thanks" page to thank for the trainers 
+		6. As a bonus, I've used a "@ngrx/store" (redux) library, simple unit test" and animation in the "Special Thanks" page to thank for the trainers 
 	with whom I helped with this level of training.
 	
 	
