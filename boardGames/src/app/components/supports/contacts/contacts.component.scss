@@ -1,0 +1,35 @@
+
+#contact {
+  background: linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0.1)),
+  url('../../../../assets/images/game-of-thrones-house-greyjoy-melaamory-1920x1080-wallpaper.jpg');
+  background-size: 100% 100%;
+  background-position: -500px 0px;
+  color: #fff;
+  font-size: 20px;
+  text-shadow: 1px 1px rgba(0,0,0,1);
+  display: block;
+
+  & .inner-section {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    & > div { opacity: 0; }
+    & img {
+      width: 10rem;
+      border-radius: 1rem;
+      -webkit-box-shadow: 0px 0px 56px -2px rgba(189,206,190,0.75);
+      -moz-box-shadow: 0px 0px 56px -2px rgba(189,206,190,0.75);
+      box-shadow: 0px 0px 56px -2px rgba(189,206,190,0.75);
+    }
+  }
+
+  & #sorcerer {
+    width: 600px;
+    height: 705px;
+    position: absolute;
+    left: 1400px;
+    right: 0px;
+    top: 192px;
+  }
+}

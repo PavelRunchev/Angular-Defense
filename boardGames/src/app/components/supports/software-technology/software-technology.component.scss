@@ -1,0 +1,35 @@
+@keyframes technology {
+  0%  { transform: perspective(400px) rotateY(0deg); }
+  100% { transform: perspective(400px) rotateY(-15deg); }
+}
+
+#software-technology {
+  background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.7)),
+   url('../../../../assets/images/black-dragon-wallpaper.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  font-weight: bold;
+  padding: 6% 0;
+
+  & .inner-software-technology {
+    background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05));
+    -webkit-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    width: 40rem;
+    font-size: 20px;
+    display: block;
+    margin: 5% auto;
+    border: 2px solid #000;
+    padding: 2%;
+    animation: technology 5s 0.2s forwards;
+    & > div { margin: 4% 0; }
+    & i { font-size: 24px; }
+
+    & .fa-angular { color: #D6002F; }
+    & .fa-html5 { color: #E85D25; }
+    & .fa-sass { color: #CC6699; }
+    & .fa-bold { color: #5E2AA9; }
+  }
+}

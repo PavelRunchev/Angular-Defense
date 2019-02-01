@@ -6,28 +6,25 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  dropdownLi : string = "dropdown";
-  dropdownMenu : string = "dropdown-menu";
-  user: boolean = true;
-  admin: boolean = false;
+  dropdownLi = 'dropdown';
+  dropdownMenu = 'dropdown-mwnu';
+  user = true;
+  admin = false;
 
   constructor(
-    private authService : AuthService, 
-    private router : Router,
+    public authService: AuthService,
+    private router: Router,
     private toastr: ToastrService
-  ) {
-    
-  }
+  ) { }
 
   ngOnInit() {
-  
-   }
+  }
 
   checkUser() {
-    if(this.authService.checkForAdmin()) {
+    if (this.authService.checkForAdmin()) {
       this.user = false;
       this.admin = true;
     } else {
@@ -37,23 +34,12 @@ export class NavigationComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().subscribe(() => {
-        localStorage.clear();
-        this.authService.authtoken = '';
-        this.authService.setAdminId = '';
-        this.authService.setUserName = '';
-        this.toastr.success('Logout Successful');
-        this.router.navigate(['/signin']);
-    });
+
   }
 
   expand() {
-    this.dropdownLi.endsWith('show') 
-    ? this.dropdownLi = "dropdown" 
-    : this.dropdownLi = "dropdown show";
-
-    this.dropdownMenu.endsWith('show')
-    ? this.dropdownMenu = "dropdown-menu"
-    : this.dropdownMenu = "dropdown-menu show";
+    this.dropdownLi.endsWith('show') ? this.dropdownLi = 'dropdown' : this.dropdownLi = 'dropdown show';
+    this.dropdownMenu.endsWith('show') ? this.dropdownMenu = 'dropdown-menu' : this.dropdownMenu = 'dropdown-menu show';
   }
+
 }

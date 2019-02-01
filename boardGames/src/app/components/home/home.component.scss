@@ -1,0 +1,53 @@
+@keyframes rotateImage {
+  0%  {
+    transform: perspective(400px) rotateY(0deg);
+    transition-delay: 5s;
+  }
+  25% {
+    transform: perspective(400px) rotateY(-20deg);
+    transition-delay: 5s;
+  }
+  50% {
+    transform: perspective(400px) rotateY(0deg);
+    transform-delay: 5s;
+  }
+  75% {
+    transform: perspective(400px) rotateY(20deg);
+    transition-delay: 5s;
+  }
+  100% {
+    transform: perspective(400px) rotateY(0deg);
+    transition-delay: 5s;
+  }
+}
+
+#home {
+  background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+    url('../../../assets/images/black-dragon-wallpaper.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  & .inner-home {
+    background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05));
+    -webkit-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    border: 2px solid #000;
+    border-radius: 0.5rem;
+    padding: 2rem;
+
+    & .highestGame {
+      position: relative;
+      animation: rotateImage 15s 0.2s infinite;
+      & .highestGame-shadow {
+        -webkit-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+        -moz-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+        box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+        overflow: hidden;
+      }
+    }
+  }
+}

@@ -13,5 +13,6 @@
             "app",
             "kebab-case"
         ]
-    }
+    },
+    "no-inferrable-types": [true, "ignore-params", "ignore-properties"]
 }

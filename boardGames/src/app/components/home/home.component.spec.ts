@@ -1,22 +1,25 @@
-import { HomeComponent } from'./home.component';
-import { GameService } from '../games/game.survice';
-import { AuthService } from '../../authentication/auth.service';
-import { of } from 'rxjs'; 
-import { HttpClient } from 'selenium-webdriver/http';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
-    it('should return false', () => {
-        const home = new HomeComponent(null, null);
-        expect(home.noRaiting).toBe(false);
-    });
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
-    it('should return true', () => {
-        let home = new HomeComponent(null, null);
-        home['noRaiting'] = true;
-        expect(home.noRaiting).toBe(true);
-    });
-  
-  
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ HomeComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

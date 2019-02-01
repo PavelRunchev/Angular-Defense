@@ -4,16 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from './authentication/auth.module';
 import { CustomFormsModule } from 'ng2-validation';
+import { AppRoutingModule } from './app.routing';
 
+import { AuthModule } from './authentication/auth.module';
 import { AuthService } from './authentication/auth.service';
 import { AppComponent } from './app.component';
-import { SharedModule } from './components/shared/nav.module';
 import { HomeComponent } from './components/home/home.component';
-import { AppRoutingModule } from 'src/app/app.routing';
+import { SharedModule } from './components/shared/shared.module';
+import { PageNotFoundComponent } from './components/PageNotFound/PageNotFound.component';
+import { SupportsModule } from './components/supports/supports.module';
 import { GameModule } from './components/games/game.module';
-import { AboutModule } from './components/about/about.module';
 
 import { StoreModule } from '../../node_modules/@ngrx/store';
 import { appReducers } from './store/app.reducers';
@@ -22,6 +23,7 @@ import { appReducers } from './store/app.reducers';
   declarations: [
     AppComponent,
     HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -31,12 +33,12 @@ import { appReducers } from './store/app.reducers';
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule,
-    SharedModule,
-    GameModule,
-    CustomFormsModule,
-    AboutModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(appReducers)
+    CustomFormsModule,
+    SharedModule,
+    SupportsModule,
+    StoreModule.forRoot(appReducers),
+    GameModule
   ],
   providers: [ AuthService ],
   bootstrap: [AppComponent]
