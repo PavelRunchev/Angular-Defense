@@ -1,0 +1,156 @@
+<div class="container-fluid" id="signUp">
+    <div *ngIf="loginFailed" class="loginFailed">
+      <p>Invalid Registration! Try again!</p>
+    </div>
+
+    <div class="form-group">
+
+        <div class="form-dragon">
+          <h3 class="text-center">Sign Up</h3>
+        </div>
+
+        <div class="form">
+          <a class="fas fa-times" routerLink="/home"></a>
+          <div class="title text-center">
+            <span>Please, fill all fields!</span>
+          </div>
+
+          <form [formGroup]="formUp"  (ngSubmit)="signUp()">
+
+            <div class="row">
+                <!-- Username -->
+                <div class="fields">
+                    <div *ngIf="formUp.get('username').dirty && formUp.get('username').errors" class="text-danger">
+                        <div *ngIf="!!formUp.get('username').errors.minlength">
+                            * Username must be least 3 symbols long!
+                        </div>
+                        <div *ngIf="!!formUp.get('username').errors.maxlength">
+                            * Username must be the most 15 symbols long!
+                        </div>
+                        <div *ngIf="!!formUp.get('username').errors.pattern">
+                            * Username contains only letters and digit!
+                        </div>
+                    </div>
+                    <label for="username" class="label">USERNAME</label>
+                    <span>
+                      <i class="fas fa-user"></i>
+                      <input type="text" formControlName="username" placeholder="username" id="username">
+                    </span>
+                </div>
+                  <!-- Password -->
+                  <div class="fields">
+                      <div *ngIf="formUp.get('password').errors" class="text-danger">
+                        <div *ngIf="!!formUp.get('password').errors.minlength">
+                           * Password must be least 6 symbols long!
+                        </div>
+                        <div *ngIf="!!formUp.get('password').errors.maxlength">
+                          * Password must be the most 16 symbols long!
+                        </div>
+                        <div *ngIf="!!formUp.get('password').errors.pattern">
+                           * Password contains only letters or digit!
+                        </div>
+                      </div>
+                    <label for="password" class="label">PASSWORD</label>
+                    <span>
+                      <i class="fas fa-key"></i>
+                      <input type="password" formControlName="password" placeholder="********" id="password">
+                    </span>
+                  </div>
+            </div>
+
+            <div class="row">
+              <!-- FirstName -->
+              <div class="fields">
+                <div *ngIf="formUp.get('firstName').errors" class="text-danger">
+                  <div *ngIf="!!formUp.get('firstName').errors.pattern">
+                    * First name must be start with a capital letter and contains only letters!
+                  </div>
+                </div>
+                <label for="firstName" class="label">FIRST NAME</label>
+                <span>
+                  <i class="fas fa-user-tie"></i>
+                  <input type="text" formControlName="firstName" placeholder="firstName" id="firstName">
+                </span>
+              </div>
+
+              <!-- LastName -->
+              <div class="fields">
+                <div *ngIf="formUp.get('lastName').errors" class="text-danger">
+                  <div *ngIf="!!formUp.get('lastName').errors.pattern">
+                      * Last name must be start with a capital letter and contains only letters!
+                  </div>
+                </div>
+                <label for="lastName" class="label">LAST NAME</label>
+                <span>
+                  <i class="fas fa-user-tie"></i>
+                  <input type="text" formControlName="lastName" placeholder="lastName" id="lastName">
+                </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Email -->
+              <div class="fields">
+                <div *ngIf="formUp.get('email').errors" class="text-danger">
+                  <div *ngIf="!!formUp.get('email').errors.pattern">
+                    * Invalid Email!
+                  </div>
+                </div>
+                <label for="email" class="label">EMAIL</label>
+                <span>
+                  <i class="fas fa-envelope"></i>
+                  <input type="text" formControlName="email" placeholder="email" id="email">
+                </span>
+              </div>
+
+              <!-- Age -->
+              <div class="fields">
+                <div *ngIf="formUp.get('age').errors" class="text-danger">
+                  <div *ngIf="!!formUp.get('age').errors.min">
+                    * Age must be least 18!
+                  </div>
+                  <div *ngIf="!!formUp.get('age').errors.max">
+                    * Age must be the most 70!
+                  </div>
+                </div>
+                <label for="age" class="label">AGE</label>
+                <span>
+                  <i class="fas fa-heart"></i>
+                  <input type="number" formControlName="age" placeholder="age" id="age">
+                </span>
+              </div>
+            </div>
+
+            <!-- Gender -->
+            <div class ="row gender">
+              <div class="col-xs-4 ">
+                <label class="label mr-3">Gender: </label>
+              </div>
+              <div class="col-xs-4 male">
+                <label class="label mr-3">Male</label>
+                <br/>
+                <input type="radio" name="gender" formControlName="gender" value="man" required>
+              </div>
+              <div class="col-xs-4 female">
+                <label class="label mr-3">Female</label>
+                <br/>
+                <input type="radio"  name="gender" formControlName="gender" value="woman" required>
+              </div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="text-danger text-center" *ngIf="formUp.get('checked').errors">
+                * Terms and Conditions is Required!
+            </div>
+            <p class="agree text-center">
+                <input type="checkbox" formControlName="checked" id="checked" checked>
+                <label for="rememberMe">&nbsp;&nbsp; I accept Terms and Conditions</label>
+            </p>
+            <span class="signup-buttons">
+              <input [disabled]="!formUp.valid" type="submit" value="Sign Up">
+              <a routerLink="/auth/signin">join account</a>
+            </span>
+          </form>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,39 @@
+@import '../../../../assets/sass/animation';
+
+#about {
+  display: block;
+  padding: 3.5% 0;
+
+  & h2 { font-size: 30px; margin-bottom: 3rem; }
+  & .inner-about {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    font-size: 18px;
+    border: 2px solid #bdcebe;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    font-weight: bold;
+    background: radial-gradient(circle, rgba(250,250,250,0.7) 28%, rgba(189,206,190,0.7) 100%);
+    -webkit-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    text-shadow: 1px 1px rgb(255,255,255);
+
+    & #about-dragon {
+      width: 25%;
+      height: 200px;
+      display: block;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      padding: 2px;
+      animation: rotateDragon 2s forwards;
+      opacity: 0;
+      &:hover {
+        opacity: 1;
+        animation: skipedDragon 2s 0.5s forwards;
+      }
+    }
+  }
+}

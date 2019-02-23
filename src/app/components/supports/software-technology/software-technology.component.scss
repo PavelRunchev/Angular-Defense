@@ -1,0 +1,34 @@
+@import '../../../../assets/sass/animation';
+
+#software-technology {
+  display: block;
+  font-weight: bold;
+  padding: 4% 0;
+
+  & .inner-software-technology {
+    background: radial-gradient(circle, rgba(250,250,250,0.7) 28%, rgba(189,206,190,0.7) 100%);
+    -webkit-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    box-shadow: 0px 0px 18px 3px rgba(0,0,0,0.86);
+    width: 40rem;
+    font-size: 20px;
+    display: block;
+    margin: 5% auto;
+    border: 2px solid #bdcebe;
+    border-radius: 0.5rem;
+    padding: 2%;
+    animation: technology 5s 0.2s forwards;
+    & > div { margin: 4% 0; }
+    & i { font-size: 24px; }
+
+    & .fa-angular { color: #D6002F; }
+    & .fa-html5 { color: #E85D25; }
+    & .fa-sass { color: #CC6699; }
+    & .fa-bold { color: #5E2AA9; }
+
+    & > div > #redux-logo {
+      width: 20%;
+      animation: rotateRedux 10s 2s infinite;
+    }
+  }
+}

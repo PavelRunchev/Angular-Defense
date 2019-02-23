@@ -1,0 +1,13 @@
+@import '../../../../assets/sass/animation';
+
+header {
+  background: rgb(189,206,190);
+  background: radial-gradient(circle, rgba(189,206,190,1) 28%, rgba(32,34,36,1) 100%);
+  & > h1 {
+    font-size: 40px;
+    margin: 0;
+    animation: headerRotate 7s 2s infinite;
+  }
+
+  & > h4 { margin: 0; }
+}

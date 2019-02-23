@@ -1,0 +1,45 @@
+<div class="container-fluid" id="details-game" >
+  <h2 class="h2 text-center">Details Game Section</h2>
+
+  <div *ngIf="error" class="text-center">
+    <p class="text-danger font-weight-bold">Error 401 Unauthorized</p>
+  </div>
+
+  <div class="inner-container" *ngIf="game">
+    <div class="row">
+        <div class="image mb-2">
+            <img src="{{game.imageUrl}}" class="img-thumbnail">
+          </div>
+
+          <div class="contains">
+            <p class="font-weight-bold">Title: {{game.title}}</p>
+            <p class="font-weight-bold">Publisher: {{game.publisher}}</p>
+            <p class="font-weight-bold">Platform: {{game.platform}}</p>
+            <p class="font-weight-bold">Genre: {{game.genre}}</p>
+            <p class="font-weight-bold">Date: {{game.date}}</p>
+
+            <div>
+              <p class="font-weight-bold">to youtube trailer:</p>
+              <a href="{{game.trailerUrl}}" target="_blank" class="btn btn-primary">View Trailer</a>
+            </div>
+            <div class="mt-1">
+                <p class="font-weight-bold">Take game in your room!</p>
+                <a (click)="takeGame()" class="btn btn-success">Take game</a>
+            </div>
+          </div>
+
+          <div class="trailer" *ngIf="youtubeUrl">
+              <p class="text-center font-weight-bold"><i class="fab fa-youtube"></i> Trailer</p>
+              <div [innerHtml]="yt_iframe_html" class="youtube-trailer"></div>
+          </div>
+    </div>
+
+    <p class="font-weight-bold">Description: </p>
+    <textarea rows="5" cols="5" placeholder="{{game.description}}"></textarea>
+    <div *ngIf="authService.checkForAdmin()" class="text-center">
+        <p class="text-warning">Allowed only for Admin!</p>
+        <a routerLink="/games/editGame/{{game._id}}" class="btn btn-warning mr-4">Edit Game</a>
+        <a (click)="deleteGame(game._id)" class="btn btn-danger"> Delete Game</a>
+    </div>
+  </div>
+</div>

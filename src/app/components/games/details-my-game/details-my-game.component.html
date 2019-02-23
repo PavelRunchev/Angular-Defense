@@ -1,0 +1,52 @@
+<div class="container-fluid" id="details-my-game">
+  <h2 class="h2 text-center">Details My Game Section</h2>
+
+  <div class="inner-container" *ngIf="myGame">
+      <div class="row">
+            <div class="image mb-2">
+              <img src="{{myGame.imageUrl}}" class="img-thumbnail">
+            </div>
+
+            <div class="contains">
+              <p class="font-weight-bold">Title: {{myGame.title}}</p>
+              <p class="font-weight-bold">Publisher: {{myGame.publisher}}</p>
+              <p class="font-weight-bold">Platform: {{myGame.platform}}</p>
+              <p class="font-weight-bold">Genre: {{myGame.genre}}</p>
+              <p class="font-weight-bold">Release Date: {{myGame.date}}</p>
+
+              <div>
+                <p class="font-weight-bold">to youtube trailer:</p>
+                <a href="{{myGame.trailerUrl}}" target="_blank" class="btn btn-primary">View Trailer</a>
+              </div>
+
+              <p class="key">
+                  <span class="font-weight-bold">License Cd-Key: </span>
+                  <span *ngIf="key" class="font-weight-bold">{{myGame.key}}</span>
+              </p>
+
+              <button (click)="getKey()" class="btn btn-success" id="cd-key"> CD  -  Key </button>
+            </div>
+
+            <div class="side-options">
+              <div class="delete">
+                  <p class="font-weight-bold">Delete your game!</p>
+                  <button (click)="deleteMyGame(myGame._id)" class="btn btn-danger"> Delete Game</button>
+              </div>
+              <div class="download">
+                  <p class="font-weight-bold">You needed minimum 20 Rank point for free download!</p>
+                  <a *ngIf="!freeDownload" class="btn btn-success disabled"><i class="fa fa-download"></i> Free Download</a>
+                  <a *ngIf="freeDownload" class="btn btn-success" target="_blank" href="{{myGame.downloadUrl}}"><i class="fa fa-download"></i> Free Download</a>
+              </div>
+              <div class="post-game">
+                  <p class="font-weight-bold">Posted your game in public "Posted Games" Section!</p>
+                  <a (click)="postedGame(myGame._id)" class="btn btn-info">Post Game</a>
+              </div>
+            </div>
+
+      </div>
+
+      <p class="font-weight-bold">Description: </p>
+      <textarea rows="5" cols="5" placeholder="{{myGame.description}}"></textarea>
+  </div>
+</div>
+

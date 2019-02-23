@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <img src="../../../../assets/favicon/pc-game-logo.png" id="logo" class="mr-3" alt="logo">
+  <a class="navbar-brand font-weight-bold" href="/home">BoardGames</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div *ngIf="authService.checkIfLogged()" class="dropdown">
+    <button class="dropbtn">Dropdown
+      <a class="fa fa-caret-down"></a>
+    </button>
+    <div  class="dropdown-content">
+      <a *ngIf="authService.checkForAdmin()" routerLink="/games/createGame">Create Game</a>
+      <a routerLink="/games/allGames">All Games</a>
+      <a routerLink="/games/myGames">My Games</a>
+      <a routerLink="/games/allPostedGames">Posted Games</a>
+    </div>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active mr-2">
+        <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item mr-2">
+        <a  class="nav-link" routerLink="/supports/about">About</a>
+      </li>
+      <li class="nav-item mr-2">
+        <a *ngIf="!authService.checkIfLogged()" class="nav-link" routerLink="/auth/signin">Sign In</a>
+      </li>
+      <li class="nav-item mr-2">
+        <a *ngIf="!authService.checkIfLogged()" class="nav-link" routerLink="/auth/signup">Sign Up</a>
+      </li>
+    </ul>
+
+    <div *ngIf="authService.checkForAdmin()" class="isAdmin">
+      <h4 class="text-warning">You logged in as ADMIN!</h4>
+    </div>
+
+    <div class="navbar-nav ml-auto" *ngIf="authService.checkIfLogged()">
+      <h4 class="nav-link text-light mb-0">Welcome {{authService.getGender}} {{authService.getUserName}}!</h4>
+    </div>
+
+    <div class="logout" *ngIf="authService.checkIfLogged()">
+      <a  class="nav-link" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</nav>

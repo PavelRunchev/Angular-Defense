@@ -1,0 +1,36 @@
+<div class="container-fluid" id="home">
+    <div *ngIf="!authService.checkIfLogged()">
+      <h3 class="h3 text-center">Only Authenticated users can view all board games!</h3>
+      <h3 class="h3 text-center pb-2">Please, go to Sign in!</h3>
+      <h3 class="h3 text-center pb-2">If do  not have account, go to Sign up!</h3>
+    </div>
+
+    <div *ngIf="authService.checkIfLogged()" class="text-info-logged">
+        <h3 class="h3 text-center mb-4">This game with highest rank, choosing from our users!</h3>
+    </div>
+    <div class="inner-home" *ngIf="authService.checkIfLogged()">
+      <div *ngIf="!highestGame" style="width: 271px;" class="mx-auto">
+        <img src="../../../assets/images/loading.gif">
+      </div>
+      <div class="mx-auto highestGame" style="width: 271px;" *ngIf="highestGame" >
+        <div class="card mb-3 highestGame-shadow">
+          <h3 class="card-header">{{highestGame.title}}</h3>
+          <img style="height: 300px; width: 271px; display: block;" src="{{highestGame.imageUrl}}" alt="Card image" class="images">
+          <div class="card-footer text-muted">
+            Rank: {{highestGame.rank}}
+          </div>
+        </div>
+        <div class="card highestGame-shadow">
+          <div class="card-body">
+            <h4 class="card-title">Poster: {{highestGame.taker}}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Published: {{postedDate}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-home razer" *ngIf="!authService.checkIfLogged()">
+
+    </div>
+</div>
+

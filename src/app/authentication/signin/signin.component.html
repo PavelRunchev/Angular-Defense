@@ -1,0 +1,50 @@
+<div class="container-fluid" id="signIn">
+  <div *ngIf="loginFailed" class="loginFailed">
+    <p>Invalid Account or Password! Try again!</p>
+  </div>
+
+  <div class="form-group">
+
+    <div class="form-dragon">
+      <h3 class="text-center">Sign In</h3>
+      <p class="text-center font-italic">Privacy policy</p>
+    </div>
+
+    <div class="form">
+      <a class="fas fa-times" routerLink="/home"></a>
+      <div class="title text-center">
+        <span>Please, fill all fields!</span>
+      </div>
+
+      <form [formGroup]="formIn"  (ngSubmit)="signIn()">
+        <div class="text-danger text-center" *ngIf="formIn.get('username').dirty && formIn.get('username').errors">
+             * Username cannot be less than 3 symbols!
+        </div>
+
+        <p class="fields">
+          <label for="username" class="label">USERNAME</label>
+          <span>
+            <i class="fas fa-user"></i>
+            <input type="text" formControlName="username" placeholder="username" id="username">
+          </span>
+        </p>
+
+        <div class="text-danger text-center" *ngIf="formIn.get('password').dirty && formIn.get('password').errors">
+            * Password cannot be less than 6 symbols!
+       </div>
+        <p class="fields">
+            <label for="password">PASSWORD</label>
+            <span>
+              <i class="fas fa-lock"></i>
+              <input type="password" formControlName="password" placeholder="********" id="password">
+            </span>
+        </p>
+
+        <span class="signin-buttons">
+          <input [disabled]="!formIn.valid" type="submit" value="Sign In">
+          <a routerLink="/auth/signup">create account</a>
+        </span>
+      </form>
+    </div>
+  </div>
+</div>

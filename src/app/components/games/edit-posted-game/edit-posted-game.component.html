@@ -1,0 +1,152 @@
+<div class="container-fluid" id="edit-post-game">
+  <h2 class="h2 text-center">Edit Post Game Section</h2>
+  <p class="text-center font-weight-bold text-warning">Only Admin can edited Post Game!</p>
+  <div *ngIf="editPostFailed" class="alert alert-danger text-center">
+    <p>{{errorMessage}}</p>
+  </div>
+  <div class="text-center" *ngIf="!editPostedGame">
+    <img src="../../../../assets/images/loading.gif">
+  </div>
+  <div class="inner-container" *ngIf="editPostedGame">
+    <div class="image">
+      <img [src]="formPostEdit.get('imageUrl').value" src="{{editPostedGame.imageUrl}}">
+    </div>
+
+    <div class="content">
+      <form [formGroup]="formPostEdit" (submit)="editPostGame()">
+        <div class="row">
+          <div class="field">
+            <div *ngIf="formPostEdit.get('title').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('title').errors.minlength">
+                * Title be must least 3 symbols!
+              </div>
+              <div *ngIf="!!formPostEdit.get('title').errors.pattern">
+                * Title be must start Capital letter after then only letters and digits!
+              </div>
+            </div>
+            <label for="title">Title</label>
+            <input type="text" formControlName="title" placeholder="{{editPostedGame.title}}" id="title">
+          </div>
+
+          <div class="field">
+            <div *ngIf="formPostEdit.get('publisher').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('publisher').errors.minlength">
+                * Publisher be must least 2 symbols!
+              </div>
+              <div *ngIf="!!formPostEdit.get('publisher').errors.pattern">
+                * Publisher be must start Capital letter after then only letters and digits!
+              </div>
+            </div>
+            <label for="publisher">Publisher</label>
+            <input type="text" formControlName="publisher" placeholder="{{editPostedGame.publisher}}" id="publisher">
+          </div>
+
+          <div class="field">
+            <div *ngIf="formPostEdit.get('platform').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('platform').errors.minlength">
+                * Platform be must least 2 symbols!
+              </div>
+              <div *ngIf="!!formPostEdit.get('platform').errors.pattern">
+                * PLatform be must start Capital letter after then only letters, digits and dashes!
+              </div>
+            </div>
+            <label for="platform">Platform</label>
+            <input type="text" formControlName="platform" placeholder="{{editPostedGame.platform}}" id="platform">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <div *ngIf="formPostEdit.get('genre').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('genre').errors.minlength">
+                * Genre be must least 3 symbols!
+              </div>
+              <div *ngIf="!!formPostEdit.get('genre').errors.pattern">
+                * Genre be must start Capital letter after then only letters, dashes and space!
+              </div>
+            </div>
+            <label for="genre">Genre</label>
+            <input type="text" formControlName="genre" placeholder="{{editPostedGame.genre}}" id="genre">
+          </div>
+          <div class="field">
+            <div *ngIf="formPostEdit.get('date').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('date').errors.min">
+                * Date be must least 1996 year!
+              </div>
+              <div *ngIf="!!formPostEdit.get('date').errors.max">
+                * Date be must the most 2020 year!
+              </div>
+            </div>
+              <label for="date">Release Date</label>
+              <input type="number" formControlName="date" placeholder="{{editPostedGame.date}}" id="date">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <div *ngIf="formPostEdit.get('imageUrl').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('imageUrl').errors.pattern">
+                * This is not imageUrl hyperlink!
+              </div>
+            </div>
+            <label for="imageUrl">ImageUrl</label>
+            <input type="text" formControlName="imageUrl" placeholder="{{editPostedGame.imageUrl}}" id="imageUrl">
+          </div>
+          <div class="field">
+            <div *ngIf="formPostEdit.get('trailerUrl').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('trailerUrl').errors.pattern">
+                * This is not Trailer hyperlink!
+              </div>
+            </div>
+            <label for="trailerUrl">TrailerUrl</label>
+            <input type="text" formControlName="trailerUrl" placeholder="{{editPostedGame.trailerUrl}}" id="trailerUrl">
+          </div>
+          <div class="field">
+            <div *ngIf="formPostEdit.get('downloadUrl').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('downloadUrl').errors.pattern">
+                * This is not Download hyperlink!
+              </div>
+            </div>
+            <label for="downloadUrl">DownloadUrl</label>
+            <input type="text" formControlName="downloadUrl" placeholder="{{editPostedGame.downloadUrl}}" id="downloadUrl">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <div *ngIf="formPostEdit.get('taker').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('taker').errors.pattern">
+                    * Owner is contains only letters, digit and space!
+              </div>
+            </div>
+            <label for="taker">Owner Post</label>
+            <input type="text" formControlName="taker" placeholder="{{editPostedGame.taker}}" id="taker">
+          </div>
+
+          <div class="field">
+            <label for="isPost">Game is Posted (true or false)</label>
+            <input formControlName="isPost" placeholder="{{editPostedGame.isPost}}" id="isPost">
+          </div>
+
+          <div class="field">
+            <div *ngIf="formPostEdit.get('rank').errors" class="text-danger">
+              <div *ngIf="!!formPostEdit.get('rank').errors.min">
+                  * Rank can not be negative number!
+              </div>
+              <div *ngIf="!!formPostEdit.get('rank').errors.max">
+                  * Rank be must the most 6!
+              </div>
+            </div>
+            <label for="rank">Rank</label>
+            <input type="number" formControlName="rank" placeholder="{{editPostedGame.rank}}" id="rank">
+          </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" id="edit-btn" value="Edit Post Game" class="btn btn-warning">
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

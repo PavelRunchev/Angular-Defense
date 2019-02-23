@@ -1,0 +1,148 @@
+@import '../../../assets/sass/animation';
+@import '../../../assets/sass/mixins';
+
+#signIn {
+  padding: 4.5% 0;
+  & .loginFailed {
+    color: red;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  & .form-group {
+    @include board-form;
+    width: 45%;
+
+    & .form-dragon {
+      background: linear-gradient(rgba(189,206,190,0.7), rgba(189,206,190,0.7)),
+      url('../../../assets/images/black-dragon-wallpaper.jpg');
+      width: 50%;
+      background-size: center;
+      background-position-x: center;
+      background-repeat: no-repeat;
+      padding: 5%;
+      border-right: 2px solid #bdcebe;
+
+      & h3 { font-size: 30px; margin-bottom: 23rem; }
+    }
+
+    & .form {
+      width: 50%;
+      background: rgb(240,240,240);
+      padding: 2%;
+
+      & > .fa-times { @include times-view; }
+
+      & > .title {
+        margin: 20% 0;
+        & > span { @include form-title; }
+      }
+
+      & .fields {
+        padding-left: 10%;
+          & > label { @include label-field; }
+          & i { color: #bdcebe; margin-right: 5%; }
+          & input { @include input-field; }
+      }
+
+      & .text-danger { font-size: 12px; }
+
+      & .signin-buttons {
+        padding-left: 10%;
+        & > input {
+          margin-top: 3rem;
+          @include button-submit;
+          &:active {
+            -webkit-box-shadow: 0px 0px 17px 3px rgba(189,206,190,0.9);
+            -moz-box-shadow: 0px 0px 17px 3px rgba(189,206,190,0.9);
+            box-shadow: 0px 0px 17px 3px rgba(189,206,190,0.9);
+          }
+        }
+
+        & > a {
+          cursor: pointer;
+          font-size: 14px;
+          text-decoration: none;
+          color: #000;
+          font-style: italic;
+          &:hover { border-bottom: 1px solid #000; }
+        }
+      }
+    }
+  }
+  animation: largeForm 3s forwards;
+}
+
+@media screen and (max-width: 1600px) {
+  #signIn {
+    & .form-group { width: 50%; }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  #signIn {
+    & .form-group { width: 55%; }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  #signIn {
+    & .form-group { width: 60%; }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #signIn {
+    & .form-group { width: 65%; }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #signIn {
+    & .form-group { width: 75%; }
+  }
+}
+
+@media screen and (max-width: 860px) {
+  #signIn {
+    & .form-group {
+      width: 75%;
+      display: block;
+      & .form-dragon,
+      & .form { width: 100%; }
+
+      & .form {
+        & .fields,
+        & .signin-buttons { display: block; width: 60%; margin: 2rem auto; }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 705px) {
+  #signIn {
+    & .form-group {
+      & .form {
+        & .fields { padding: 0; }
+
+        & .fields > span > input { width: 80%; }
+
+        & .signin-buttons {
+          padding: 0;
+          & > input {
+            display: block;
+            margin-right: none;
+            margin: 0 auto;
+          }
+
+          & > a {
+            width: 6rem;
+            margin: 2rem auto;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

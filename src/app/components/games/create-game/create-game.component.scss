@@ -1,0 +1,105 @@
+@import '../../../../assets/sass/animation';
+@import '../../../../assets/sass/mixins';
+
+#create-game {
+  padding: 4.5% 0;
+  & .createFailed {
+    color: red;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  & .form-group {
+    @include board-form;
+    width: 65%;
+
+    & .form {
+      width: 100%;
+      background: rgb(240,240,240);
+      padding: 2%;
+
+      & .fa-times { @include times-view; }
+      & > .title { margin: 5% auto; & > span { @include form-title; } }
+
+      & .row {
+        width: 100%; display:
+        flex; justify-content:
+        space-around;
+        margin: 2% 0;
+
+        & .fields {
+          width: 25%;
+          & > label { @include label-field; font-size: 18px; padding-left: 0; font-weight: bold; }
+          & > input { @include input-field; width: 100%; }
+          & > textarea { width: 100%; padding: 1%; }
+
+          & textarea::-webkit-input-placeholder { font-style: italic; color: #bdcebe; padding: 3%; }
+
+          & .row:nth-of-type(2) { justify-content: center; }
+          & .row:nth-of-type(4) { justify-content: space-around; }
+
+          ::-webkit-input-placeholder { font-style: italic; font-size: 16px; }
+          ::-moz-placeholder { font-style: italic; font-size: 16px; }
+          :-ms-input-placeholder { font-style: italic; font-size: 16px; }
+
+          & .text-danger { font-size: 14px; width: 100%; margin: 0; }
+        }
+
+        & .createImage {
+          height: 300px;
+          width: 25%;
+          background: #fff;
+          border: 1px solid #bdcebe;
+          border-radius: 0.3rem;
+          display: flex;
+          text-align: center;
+
+          & #no-image { margin: auto auto; }
+          & #image,
+          & #image > img { width: 100%; height: 100%; }
+        }
+      }
+
+      & #create-btn {
+        display: block;
+        @include button-submit;
+        margin: 2% auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #create-game {
+    & .form-group {
+      width: 85%;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #create-game {
+    & .form-group {
+      width: 80%;
+      & .form {
+        & .row {
+          flex-direction: column;
+          & .fields {
+            width: unset;
+            width: 60%;
+            margin: 0 auto;
+
+            & > textarea { width: 100%; padding: 1%;  margin-bottom: 3%; }
+          }
+
+          & .createImage { width: 60%; margin: 0 auto; }
+
+          & .btn-success { width: 9rem; margin: 2% auto; }
+        }
+
+
+      }
+    }
+  }
+}

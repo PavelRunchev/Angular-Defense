@@ -1,0 +1,35 @@
+<div class="container-fluid" id="myGames">
+  <h2 class="h2 text-center">MY ROOM</h2>
+  <h4 class="h4 text-center">Private Section</h4>
+
+  <div *ngIf="!myGames" class="text-center">
+      <img src="../../../../assets/images/loading.gif">
+  </div>
+
+  <div class="inner-container" *ngIf="myGames">
+    <div *ngIf="noAddMyGames" class="no-games text-center">
+      <h3 class="text-danger">You have not games added to your room!</h3>
+    </div>
+
+    <div class="listGames">
+      <div *ngFor="let myGame of myGames; index as i">
+        <div class="mx-auto" *ngIf="myGame" >
+          <a routerLink="/games/detailsMyGame/{{myGame._id}}">
+            <h3 class="h3 text-center">{{i + 1}}</h3>
+            <div class="card">
+                <h3 class="card-header text-center">{{myGame.title}}</h3>
+                <div *ngIf="myGame.imageUrl">
+                  <img src="{{myGame.imageUrl}}" alt="Card image" class="images">
+                </div>
+                <div *ngIf="!myGame.imageUrl">
+                    <img src="../../../../assets/images/loading.gif">
+                </div>
+                <div class="card-footer text-muted text-center">Rank: {{myGame.rank}}</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

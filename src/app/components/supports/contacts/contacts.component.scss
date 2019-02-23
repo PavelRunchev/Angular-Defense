@@ -1,0 +1,120 @@
+@keyframes end1 {
+  0% { opacity: 0.5; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes end2 {
+  0% { opacity: 0.5; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes end3 {
+  0% { opacity: 0.5; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes end4 {
+  0% { opacity: 0.5; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes end5 {
+  0% { opacity: 0.5; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes end6 {
+  0% { opacity: 0.5; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+@keyframes end7 {
+  0% { opacity: 0.5; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#contact {
+  position: relative;
+  color: #fff;
+  font-size: 20px;
+  text-shadow: 1px 1px rgba(0,0,0,1);
+  display: block;
+  padding: 0;
+  height: 750px;
+
+
+  & .inner-section {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 10;
+    & > div { opacity: 0; }
+    & img {
+      width: 10rem;
+      border-radius: 1rem;
+      -webkit-box-shadow: 0px 0px 56px -2px rgba(189,206,190,0.75);
+      -moz-box-shadow: 0px 0px 56px -2px rgba(189,206,190,0.75);
+      box-shadow: 0px 0px 56px -2px rgba(189,206,190,0.75);
+    }
+  }
+
+  & #img1,
+  & #img2,
+  & #img3,
+  & #img4,
+  & #img5,
+  & #img6,
+  & #img7 {
+    width: 100%;
+    height: 750px;
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  & #img1 { animation: end1 8s forwards; }
+  & #img2 { animation: end2 8s 7s forwards; }
+  & #img3 { animation: end3 8s 12s forwards; }
+  & #img4 { animation: end4 8s 17s forwards; }
+  & #img5 { animation: end5 8s 22s forwards; }
+  & #img6 { animation: end6 8s 27s forwards; }
+  & #img7 { animation: end6 12s 32s forwards; }
+}

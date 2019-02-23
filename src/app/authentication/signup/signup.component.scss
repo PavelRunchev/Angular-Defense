@@ -1,0 +1,148 @@
+@import '../../../assets/sass/animation';
+@import '../../../assets/sass/mixins.scss';
+
+#signUp {
+  padding: 4.5% 0;
+  & .loginFailed {
+    color: red;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  & .form-group {
+    @include board-form;
+    width: 69rem;
+    & .form-dragon {
+      background: linear-gradient(rgba(189,206,190,0.7), rgba(189,206,190,0.7)),
+      url('../../../assets/images/game-of-thrones-house-greyjoy-melaamory-1920x1080-wallpaper.jpg');
+      background-size: cover;
+      background-position-x: center;
+      background-repeat: no-repeat;
+      width: 40%;
+      padding: 5%;
+      border-right: 2px solid #bdcebe;
+
+      & h3 { font-size: 30px; }
+    }
+
+    & .form {
+      width: 60%;
+      background: rgb(240,240,240);
+      padding: 2%;
+      & .text-danger { display: block; font-size: 12px; }
+
+      & > .fa-times { @include times-view; }
+      & > .title { margin: 5% 0; & > span { @include form-title; } }
+
+      & .fields {
+        width: 19rem;
+        padding-left: 5%;
+        & > label { @include label-field; width: 15.5rem; }
+        & > span { display: flex; width: 15.5rem }
+        & i { color: #bdcebe; margin-right: 4%; position: relative; top: 10px; }
+        & input {
+          @include input-field;
+          width: 15.5rem;
+          overflow: hidden;
+        }
+
+        ::-webkit-input-placeholder { font-size: 14px; }
+        ::-moz-placeholder { font-size: 14px; }
+        :-ms-input-placeholder { font-size: 14px; }
+      }
+
+      & .gender {
+        display: flex;
+        justify-content: center;
+      }
+
+      & .signup-buttons {
+        padding-left: 10%;
+        text-align: center;
+        & > input {
+          @include button-submit;
+          margin: 0 5rem;
+          &:active {
+            -webkit-box-shadow: 0px 0px 17px 3px rgba(189,206,190,0.9);
+            -moz-box-shadow: 0px 0px 17px 3px rgba(189,206,190,0.9);
+            box-shadow: 0px 0px 17px 3px rgba(189,206,190,0.9);
+          }
+        }
+
+        & > a {
+          display: inline-block;
+          cursor: pointer;
+          font-size: 16px;
+          text-decoration: none;
+          color: #000;
+          font-style: italic;
+          padding-bottom: 0;
+          &:hover { border-bottom: 1px solid #000; }
+        }
+      }
+
+      & .text-danger { width: 100%; margin: 0; }
+    }
+  }
+}
+
+@media screen and (max-width: 1144px) {
+  #signUp {
+    & .form-group {
+      width: 80%;
+      .form-dragon,
+      & .form {
+        width: 50%;
+        & .fields {
+          width: 95%;
+          padding-left: 10%;
+          & label { padding-left: 9%; }
+          & span { width: 100%; }
+          & input { width: 80%; }
+        }
+
+        & .signup-buttons {
+          padding-left: 0;
+          & > input { margin: 0; margin-right: 8%; }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 810px) {
+  #signUp {
+    & .form-group {
+      width: 70%;
+      display: block;
+      & .form-dragon { height: 300px;}
+      & .form-dragon,
+      & .form {
+        width: 100%;
+        & .signup-buttons {
+          & > input {
+            margin-left: 19%;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #signUp {
+    & .form-group {
+      & .form {
+        & .signup-buttons {
+          & > input,
+          & > a {
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+}

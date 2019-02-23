@@ -1,0 +1,143 @@
+<div class="container-fluid" id="create-game">
+  <h2 class="h2 text-center">Create Game Section</h2>
+  <div *ngIf="createFailed" class="createFailed">
+    <p>{{errorMessage}}</p>
+  </div>
+
+  <div class="form-group">
+    <div class="form">
+      <a class="fas fa-times" routerLink="/home"></a>
+      <div class="title text-center">
+          <span>Please, fill all fields!</span>
+      </div>
+
+      <form [formGroup]="createGameForm"  (ngSubmit)="createGame()">
+        <div class="row">
+          <div class="fields">
+            <div *ngIf="createGameForm.get('title').errors" class="text-danger">
+              <div *ngIf="!!createGameForm.get('title').errors.minlength">
+                * Title be must least 3 symbols!
+              </div>
+              <div *ngIf="!!createGameForm.get('title').errors.pattern">
+                * Title be must start Capital letter after then only letters and digits!
+              </div>
+            </div>
+            <label for="title" class="label">Title</label>
+            <input type="text" formControlName="title" placeholder="title" id="title">
+          </div>
+          <div class="fields">
+            <div *ngIf="createGameForm.get('publisher').errors" class="text-danger">
+              <div *ngIf="!!createGameForm.get('publisher').errors.minlength">
+                * Publisher be must least 2 symbols!
+              </div>
+              <div *ngIf="!!createGameForm.get('publisher').errors.pattern">
+                * Publisher be must start Capital letter after then only letters and digits!
+              </div>
+            </div>
+            <label for="publisher" class="label">Publisher</label>
+            <input type="text" formControlName="publisher" placeholder="publisher" id="publisher">
+          </div>
+          <div class="fields">
+              <div *ngIf="createGameForm.get('platform').errors" class="text-danger">
+                <div *ngIf="!!createGameForm.get('platform').errors.minlength">
+                  * Platform be must least 2 symbols!
+                </div>
+                <div *ngIf="!!createGameForm.get('platform').errors.pattern">
+                  * PLatform be must start Capital letter after then only letters, digits and dashes!
+                </div>
+              </div>
+              <label for="platform" class="label">Platform</label>
+              <input type="text" formControlName="platform" placeholder="platform" id="platform">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="fields">
+              <div *ngIf="createGameForm.get('genre').errors" class="text-danger">
+                  <div *ngIf="!!createGameForm.get('genre').errors.minlength">
+                    * Genre be must least 3 symbols!
+                  </div>
+                  <div *ngIf="!!createGameForm.get('genre').errors.pattern">
+                    * Genre be must start Capital letter after then only letters, dashes and space!
+                  </div>
+              </div>
+              <label for="genre" class="label">Genre</label>
+              <input type="text" formControlName="genre" placeholder="genre" id="genre">
+          </div>
+          <div class="fields">
+              <div *ngIf="createGameForm.get('date').errors" class="text-danger">
+                <div *ngIf="!!createGameForm.get('date').errors.min">
+                  * Date be must least 1996 year!
+                </div>
+                <div *ngIf="!!createGameForm.get('date').errors.max">
+                  * Date be must the most 2020 year!
+                </div>
+              </div>
+              <label for="date" class="label">Release Date</label>
+              <input type="number" formControlName="date" placeholder="date" id="date">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="fields">
+              <div *ngIf="createGameForm.get('trailerUrl').errors" class="text-danger">
+                  <div *ngIf="!!createGameForm.get('trailerUrl').errors.pattern">
+                    * This is not Trailer hyperlink!
+                  </div>
+              </div>
+              <label for="trailerUrl" class="label">Trailer Url</label>
+              <input type="text" formControlName="trailerUrl" placeholder="trailerUrl" id="trailerUrl">
+          </div>
+          <div class="fields">
+              <div *ngIf="createGameForm.get('downloadUrl').errors" class="text-danger">
+                  <div *ngIf="!!createGameForm.get('downloadUrl').errors.pattern">
+                    * This is not Download hyperlink!
+                  </div>
+              </div>
+              <label for="downloadUrl" class="label">Download Url</label>
+              <input type="text" formControlName="downloadUrl" placeholder="downloadUrl" id="downloadUrl">
+          </div>
+          <div class="fields">
+            <div *ngIf="createGameForm.get('imageUrl').errors" class="text-danger">
+              <div *ngIf="!!createGameForm.get('imageUrl').errors.pattern">
+                * This is not imageUrl hyperlink!
+              </div>
+            </div>
+            <label for="imageUrl" class="label">Image Url</label>
+            <input type="text" formControlName="imageUrl" placeholder="imageUrl" id="imageUrl">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="fields">
+            <div *ngIf="createGameForm.get('description').errors" class="text-danger">
+              <div *ngIf="!!createGameForm.get('description').errors.minlength">
+                  * Description be must least 10 symbols!
+              </div>
+              <div *ngIf="!!createGameForm.get('description').errors.maxlength">
+                  * Description be must the most 355 symbols!
+              </div>
+            </div>
+            <label for="description" class="label">Description</label>
+            <textarea class="form-control" rows="11" formControlName="description" placeholder="description" id="description"></textarea>
+          </div>
+          <div class="createImage">
+            <div *ngIf="!createGameForm.get('imageUrl').value" id="no-image">
+              <p>No Image URL Selected!</p>
+            </div>
+
+
+            <div *ngIf="createGameForm.get('imageUrl').value" id="image">
+              <img [src]="createGameForm.get('imageUrl').value">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <input [disabled]="!createGameForm.valid" type="submit" class="btn btn-success" value="Create Game">
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

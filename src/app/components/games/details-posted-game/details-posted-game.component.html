@@ -1,0 +1,84 @@
+<div class="container-fluid" id="post-details-game">
+  <h2 class="h2 text-center">Details Posted Game Section</h2>
+
+  <div *ngIf="!postGame" class="loading-postGame">
+    <img src="../../../../assets/images/loading.gif">
+  </div>
+  <div class="inner-container" *ngIf="postGame">
+    <div class="row">
+        <div class="image mb-2">
+            <p class="text-center font-weight-bold">OWNER: {{postGame.taker}}</p>
+            <img src="{{postGame.imageUrl}}" class="img-thumbnail">
+          </div>
+
+          <div class="contains">
+            <p class="font-weight-bold mt-5">Title: {{postGame.title}}</p>
+            <p class="font-weight-bold">Publisher: {{postGame.publisher}}</p>
+            <p class="font-weight-bold">Platform: {{postGame.platform}}</p>
+            <p class="font-weight-bold">Genre: {{postGame.genre}}</p>
+            <p class="font-weight-bold">Release Date: {{postGame.date}}</p>
+            <div>
+              <p class="font-weight-bold">to youtube trailer:</p>
+              <a href="{{postGame.trailerUrl}}" target="_blank" class="btn btn-secondary">View Trailer</a>
+            </div>
+
+          </div>
+
+          <div class="side-options">
+            <div class="delete-post mt-5">
+              <p>Delete your game from "Posted Games"!</p>
+              <a (click)="removedPost(postGame._id)" class="btn btn-danger"> Remove Game</a>
+            </div>
+
+            <div class="current-rank">
+              <h4 class="font-weight-bold text-success">Current Rank: {{postGame.rank}}</h4>
+            </div>
+
+            <div class="rank">
+              <p>Give your choice for this posted game!</p>
+              <form [formGroup]="formRank" (submit)="giveRank()">
+                <select formControlName="choice">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+                <span>
+                  <button type="submit" class="btn btn-primary" id="give-rank">Give your rank</button>
+                </span>
+              </form>
+            </div>
+
+          </div>
+
+          <div class="trailer" *ngIf="youtubeUrl">
+              <p class="text-center font-weight-bold">Trailer Game</p>
+              <div [innerHtml]="yt_iframe_html" class="youtube-trailer"></div>
+          </div>
+    </div>
+
+    <p class="font-weight-bold">Description: </p>
+    <textarea rows="5" cols="5" placeholder="{{postGame.description}}"></textarea>
+    <div *ngIf="authService.checkForAdmin()" class="admin-options text-center">
+        <p class="text-center font-weight-bold text-warning">Allowed only for Admin!</p>
+        <div class="row">
+          <div class="delete-post">
+            <p>Delete "Posted Game" from Room and public List(from the Base)!</p>
+            <a (click)="deleteGame(postGame._id)" class="btn btn-danger"> Delete Game</a>
+          </div>
+          <div class="edited-post">
+            <p>Edit piblic "Posted Game"!</p>
+            <a routerLink="/games/editPostedGame/{{postGame._id}}" class="btn btn-warning">Edit Game</a>
+          </div>
+          <div class="remove-post">
+            <p>Remove only from public "Posted Games"(no room)!</p>
+            <a (click)="removedPost(postGame._id)" class="btn btn-outline-danger">Remove Post</a>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+

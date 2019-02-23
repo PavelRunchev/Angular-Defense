@@ -1,0 +1,46 @@
+<div class="container-fluid" id="allPostGames">
+    <h2 class="h2 text-center">POSTED GAMES SECTION</h2>
+    <h4 class="text-center">Posted Games is order by descending.</h4>
+
+    <div *ngIf="loadingGames" class="text-center">
+        <img src="../../../../assets/images/loading.gif">
+    </div>
+
+    <div class="inner-container" *ngIf="postedGames$">
+
+      <div class="listGames">
+        <div *ngFor="let game of postedGames$ | async | paginate :
+        {id: 'allGames',itemsPerPage: pageSize, currentPage: currentPage}">
+        <div class="mx-auto" *ngIf="game" >
+          <a routerLink="/games/detailsPostedGame/{{game._id}}">
+            <div class="card">
+                <h3 class="card-header text-center">{{game.title}}</h3>
+                <div *ngIf="game.imageUrl">
+                  <img src="{{game.imageUrl}}" alt="Card image" class="images">
+                </div>
+                <div *ngIf="!game.imageUrl">
+                    <img src="../../../../assets/images/loading.gif">
+                </div>
+                <div class="card-footer text-muted text-center">Rank: {{game.rank}}</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center justify-content-center pagination mt-4" *ngIf="postedGames$">
+      <pagination-controls
+        id="allGames"
+        (pageChange)="changePage($event)"
+        maxSize="9"
+        directionLinks="true"
+        autoHide="true"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pgination"
+        screenReaderPaginationLabel="page"
+        screenReaderPaginationLabel="You`re on page">
+      </pagination-controls>
+    </div>
+  </div>

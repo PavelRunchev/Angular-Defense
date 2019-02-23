@@ -1,0 +1,55 @@
+<div class="container-fluid" id="allGames">
+  <h2 class="h2 text-center">CATALOG SECTION</h2>
+
+  <div *ngIf="noLoadingGames" class="text-center">
+      <img src="../../../../assets/images/loading.gif">
+  </div>
+
+  <div class="inner-container" *ngIf="games$">
+    <div class="search">
+          <p>You must write a title of the game in form below!</p>
+          <form [formGroup]="formSearch" (ngSubmit)="search()">
+            <div *ngIf="noSearchedResult">
+              <h5 class="h5 text-warning">No Search Games!</h5>
+            </div>
+            <input type="text" formControlName="search" placeholder="search">
+            <button type="submit" class="btn btn-outline-warning">Search Game</button>
+          </form>
+    </div>
+
+    <div class="listGames">
+      <div *ngFor="let game of games$ | async | paginate :
+      {id: 'allGames',itemsPerPage: pageSize, currentPage: currentPage}">
+      <div class="mx-auto" *ngIf="game" >
+        <a routerLink="/games/detailsGame/{{game._id}}">
+          <div class="card">
+              <h3 class="card-header text-center">{{game.title}}</h3>
+              <div *ngIf="game.imageUrl">
+                <img src="{{game.imageUrl}}" alt="Card image" class="images">
+              </div>
+              <div *ngIf="!game.imageUrl">
+                  <img src="../../../../assets/images/loading.gif">
+              </div>
+              <div class="card-footer text-muted text-center">Publisher: {{game.publisher}}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="row align-items-center justify-content-center pagination" *ngIf="games$">
+    <pagination-controls
+      id="allGames"
+      (pageChange)="changePage($event)"
+      maxSize="9"
+      directionLinks="true"
+      autoHide="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pgination"
+      screenReaderPaginationLabel="page"
+      screenReaderPaginationLabel="You`re on page">
+    </pagination-controls>
+  </div>
+</div>
